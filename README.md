@@ -1,39 +1,50 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## encrypt_shared_pref
+Simple to use yet powerful package to encrypt shared preferences in android iOS and web.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Simple to use yet powerful package to encrypt shared preferences in android iOS and web.
+- You have an option to bypass encryption just by passing a bool.
+- Supports String, int, bool, double, map and List<String>.
+- Uses advanced AES-CBC-128 algorithm for encryption.
+- Encrypts both key and value.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. add dependency in your project pubspec.yaml file encrypted_shared_pref: [version]
+2. add import import 'package:encrypted_shared_pref/encrypted_shared_pref.dart';
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
+1. string data type to save securely encrypt storage.
 ```dart
-const like = 'sample';
+    final SecureStorage secureStorage = SecureStorage();
+    secureStorage.writeString("Key", "This is local storage", isEncrypted : true);
+```
+1. string data type to get securely encrypt storage.
+```dart
+    final SecureStorage secureStorage = SecureStorage();
+    secureStorage.readString("Key", isEncrypted : true);
 ```
 
-## Additional information
+#### Usage
+1. Save :
+```
+    final SecureStorage secureStorage = SecureStorage();
+    await secureStorage.writeString("encryptedString", "This is first string",isEncrypted: true);
+    await secureStorage.writeInt("key", 50, isEncrypted: true);
+    await secureStorage.writeJson("keyMap", {"Hey":true}, isEncrypted: true);
+    await secureStorage.writeBool("keyBool", true,isEncrypted:  true);
+    await secureStorage.writeStringList("keyList", ["A","K"], isEncrypted: true);
+```
+First parameter is the key and second parameter is value and third parameter is whether you want to encrypt this key/value or not.
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+2. Fetch :
+```
+    final SecureStorage secureStorage = SecureStorage();
+    await secureStorage.readString("encryptedString", "This is first string",isEncrypted: true);
+    await secureStorage.readInt("key", 50, isEncrypted: true);
+    await secureStorage.readJson("keyMap", {"Hey":true}, isEncrypted: true);
+    await secureStorage.readBool("keyBool", true,isEncrypted:  true);
+    await secureStorage.readStringList("keyList", ["A","K"], isEncrypted: true);
+```
+First parameter is the key and second parameter is whether you want to encrypt this key/value or not.
