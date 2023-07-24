@@ -1,7 +1,7 @@
 name: encrypt_shared_pref
 description: Simple to use yet powerful package to encrypt shared preferences in android iOS and web.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Akshay-Bizott/encrypt_shared_pref.git
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
