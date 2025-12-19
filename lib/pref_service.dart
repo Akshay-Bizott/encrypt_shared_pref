@@ -38,7 +38,7 @@ class SecureStorage {
   Future<void> writeString({required String key, required String value, bool isEncrypted = true}) async {
     final jsonData = json.encode(value);
     if (isEncrypted) {
-      final encryptedData = _encrypter!.encrypt(jsonData, iv: _iv).base64;
+      final encryptedData = _encrypter?.encrypt(jsonData, iv: _iv).base64;
       await _secureStorage.write(key: key, value: encryptedData);
     } else {
       await _secureStorage.write(key: key, value: jsonData);
@@ -49,8 +49,8 @@ class SecureStorage {
     final encryptedData = await _secureStorage.read(key: key);
     if (encryptedData != null) {
       if (isEncrypted) {
-        final decryptedData = _encrypter!.decrypt64(encryptedData, iv: _iv);
-        return json.decode(decryptedData) as String;
+        final decryptedData = _encrypter?.decrypt64(encryptedData, iv: _iv);
+        return json.decode(decryptedData!) as String;
       } else {
         return json.decode(encryptedData) as String;
       }
@@ -88,7 +88,7 @@ class SecureStorage {
   Future<void> writeMap({required String key, required Map<String, dynamic> value, bool isEncrypted = true}) async {
     final jsonData = json.encode(value);
     if (isEncrypted) {
-      final encryptedData = _encrypter!.encrypt(jsonData, iv: _iv).base64;
+      final encryptedData = _encrypter?.encrypt(jsonData, iv: _iv).base64;
       await _secureStorage.write(key: key, value: encryptedData);
     } else {
       await _secureStorage.write(key: key, value: jsonData);
@@ -99,8 +99,8 @@ class SecureStorage {
     final encryptedData = await _secureStorage.read(key: key);
     if (encryptedData != null) {
       if (isEncrypted) {
-        final decryptedData = _encrypter!.decrypt64(encryptedData, iv: _iv);
-        return json.decode(decryptedData) as Map<String, dynamic>;
+        final decryptedData = _encrypter?.decrypt64(encryptedData, iv: _iv);
+        return json.decode(decryptedData!) as Map<String, dynamic>;
       } else {
         return json.decode(encryptedData) as Map<String, dynamic>;
       }
@@ -112,7 +112,7 @@ class SecureStorage {
   Future<void> writeList({required String key, required List<dynamic> value, bool isEncrypted = true}) async {
     final jsonData = json.encode(value);
     if (isEncrypted) {
-      final encryptedData = _encrypter!.encrypt(jsonData, iv: _iv).base64;
+      final encryptedData = _encrypter?.encrypt(jsonData, iv: _iv).base64;
       await _secureStorage.write(key: key, value: encryptedData);
     } else {
       await _secureStorage.write(key: key, value: jsonData);
@@ -123,8 +123,8 @@ class SecureStorage {
     final encryptedData = await _secureStorage.read(key: key);
     if (encryptedData != null) {
       if (isEncrypted) {
-        final decryptedData = _encrypter!.decrypt64(encryptedData, iv: _iv);
-        return json.decode(decryptedData) as List<dynamic>;
+        final decryptedData = _encrypter?.decrypt64(encryptedData, iv: _iv);
+        return json.decode(decryptedData!) as List<dynamic>;
       } else {
         return json.decode(encryptedData) as List<dynamic>;
       }
@@ -136,7 +136,7 @@ class SecureStorage {
   Future<void> writeJson({required String key, required Map<String, dynamic> jsonMap, bool isEncrypted = true}) async {
     final jsonData = json.encode(jsonMap);
     if (isEncrypted) {
-      final encryptedData = _encrypter!.encrypt(jsonData, iv: _iv).base64;
+      final encryptedData = _encrypter?.encrypt(jsonData, iv: _iv).base64;
       await _secureStorage.write(key: key, value: encryptedData);
     } else {
       await _secureStorage.write(key: key, value: jsonData);
@@ -147,8 +147,8 @@ class SecureStorage {
     final encryptedData = await _secureStorage.read(key: key);
     if (encryptedData != null) {
       if (isEncrypted) {
-        final decryptedData = _encrypter!.decrypt64(encryptedData, iv: _iv);
-        return json.decode(decryptedData) as Map<String, dynamic>;
+        final decryptedData = _encrypter?.decrypt64(encryptedData, iv: _iv);
+        return json.decode(decryptedData!) as Map<String, dynamic>;
       } else {
         return json.decode(encryptedData) as Map<String, dynamic>;
       }
